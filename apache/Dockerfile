@@ -12,3 +12,5 @@ RUN apt-get update && \
     pecl install mongodb && docker-php-ext-enable mongodb && \
     apt-get remove -y libssl-dev && \
     rm -rf /var/lib/apt/lists/*
+
+RUN a2enmod rewrite
