@@ -11,12 +11,12 @@ RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/test
       echo 'Pin-Priority: 990'; \
     }  > /etc/apt/preferences.d/git && \
     apt-get update && \
-    apt-get install -y git unzip npm libxml2-utils wkhtmltopdf openjdk-7-jre vim && \
+    apt-get install -y --no-install-recommends git unzip npm libxml2-utils wkhtmltopdf openjdk-7-jre vim && \
     rm -rf /var/lib/apt/lists/* && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
 
 RUN apt-get update && \
-    apt-get install -y libssl-dev && \
+    apt-get install -y --no-install-recommends libssl-dev && \
     docker-php-ext-install bcmath && \
     pecl install mongodb && docker-php-ext-enable mongodb && \
     pecl install xdebug  && docker-php-ext-enable xdebug  && \
