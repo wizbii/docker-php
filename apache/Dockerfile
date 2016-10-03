@@ -12,7 +12,7 @@ RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/test
     }  > /etc/apt/preferences.d/git && \
     apt-get update && \
     apt-get install -y git unzip npm libxml2-utils wkhtmltopdf openjdk-7-jre vim && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
 
 RUN apt-get update && \
