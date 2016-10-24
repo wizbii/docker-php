@@ -20,6 +20,7 @@ RUN apt-get update && \
     docker-php-ext-install bcmath && \
     pecl install mongodb && docker-php-ext-enable mongodb && \
     pecl install xdebug  && docker-php-ext-enable xdebug  && \
+    pecl install apcu  && docker-php-ext-enable apcu  && \
     apt-get remove -y libssl-dev && \
     rm -rf /var/lib/apt/lists/*
 
