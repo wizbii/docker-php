@@ -18,6 +18,7 @@ RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/test
 RUN apt-get update && \
     apt-get install -y --no-install-recommends libssl-dev && \
     docker-php-ext-install bcmath && \
+    docker-php-ext-install opcache && \
     pecl install mongodb && docker-php-ext-enable mongodb && \
     pecl install xdebug  && docker-php-ext-enable xdebug  && \
     pecl install apcu  && docker-php-ext-enable apcu  && \
