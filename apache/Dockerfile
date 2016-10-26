@@ -25,9 +25,7 @@ RUN apt-get update && \
     apt-get remove -y libssl-dev && \
     rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /root/.ssh && \
-    ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts && \
-    ssh-keyscan -t rsa bitbucket.org >> /root/.ssh/known_hosts && \
-    chmod 600 /root/.ssh/known_hosts
-
+RUN ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts  && \
+    ssh-keyscan -t rsa bitbucket.org >> /etc/ssh/ssh_known_hosts
+    
 RUN a2enmod rewrite
