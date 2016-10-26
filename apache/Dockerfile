@@ -11,7 +11,8 @@ RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/test
       echo 'Pin-Priority: 990'; \
     }  > /etc/apt/preferences.d/git && \
     apt-get update && \
-    apt-get install -y --no-install-recommends git unzip npm libxml2-utils wkhtmltopdf openjdk-7-jre vim openssh-client && \
+    apt-get install -y --no-install-recommends git unzip npm libxml2-utils wkhtmltopdf openjdk-7-jre vim openssh-client sudo && \
+    apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
