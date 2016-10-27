@@ -28,5 +28,7 @@ RUN apt-get update && \
 
 RUN ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts  && \
     ssh-keyscan -t rsa bitbucket.org >> /etc/ssh/ssh_known_hosts
+
+RUN chown www-data /var/www
     
 RUN a2enmod rewrite
