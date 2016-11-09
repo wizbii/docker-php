@@ -11,7 +11,7 @@ RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/test
       echo 'Pin-Priority: 990'; \
     }  > /etc/apt/preferences.d/git && \
     echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \ 
-    echo 'alias sudow="sudo -sHEu www-data"'' >> /etc/profile.d/wizbii.sh && \
+    echo 'alias sudow="sudo -sHEu www-data"' >> /etc/profile.d/wizbii.sh && \
     apt-get update && \
     apt-get install -y --no-install-recommends git unzip npm libxml2-utils wkhtmltopdf openjdk-7-jre vim openssh-client sudo less && \
     apt-get autoremove && \
