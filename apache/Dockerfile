@@ -32,9 +32,11 @@ RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/test
 RUN	   echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen \
+        && echo "es_ES.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& echo "fr_FR.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& echo "it_IT.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& echo "nl_NL.UTF-8 UTF-8" >> /etc/locale.gen \
+	&& echo "pt_PT.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& locale-gen
 
 RUN apt-get update && \
