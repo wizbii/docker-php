@@ -13,10 +13,29 @@ RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/test
     echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \ 
     echo 'alias sudow="sudo -sHEu www-data"' >> /etc/profile.d/wizbii.sh && \
     apt-get update && \
-    apt-get install -y --no-install-recommends git unzip npm libxml2-utils wkhtmltopdf openjdk-7-jre vim openssh-client sudo less && \
+    apt-get install -y --no-install-recommends \
+        git \
+        unzip \
+        npm \
+        libxml2-utils \
+        wkhtmltopdf \
+        openjdk-7-jre \
+        vim \
+        openssh-client \
+        sudo \
+        less \
+        locales && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN	   echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
+	&& echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
+	&& echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen \
+	&& echo "fr_FR.UTF-8 UTF-8" >> /etc/locale.gen \
+	&& echo "it_IT.UTF-8 UTF-8" >> /etc/locale.gen \
+	&& echo "nl_NL.UTF-8 UTF-8" >> /etc/locale.gen \
+	&& locale-gen
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends libssl-dev libpng12-dev libjpeg62-turbo-dev && \
