@@ -12,6 +12,10 @@ RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/test
     }  > /etc/apt/preferences.d/git && \
     echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \ 
     echo 'alias sudow="sudo -sHEu www-data"' >> /etc/profile.d/wizbii.sh && \
+    # Install an acceptable nodejs version with npm
+    curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
+    echo 'deb https://deb.nodesource.com/node_6.x jessie main' > /etc/apt/sources.list.d/nodesource.list && \
+    echo 'deb-src https://deb.nodesource.com/node_6.x jessie main' >> /etc/apt/sources.list.d/nodesource.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
         git \
@@ -24,7 +28,8 @@ RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/test
         openssh-client \
         sudo \
         less \
-        locales && \
+        locales \
+	nodejs && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
