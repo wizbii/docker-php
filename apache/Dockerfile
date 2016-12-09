@@ -19,7 +19,6 @@ RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/test
     apt-get install -y --no-install-recommends \
         git \
         unzip \
-        npm \
         libxml2-utils \
         wkhtmltopdf \
         openjdk-7-jre \
