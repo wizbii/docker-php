@@ -48,7 +48,7 @@ RUN apt-get update && \
     docker-php-ext-install bcmath opcache gd pdo_mysql exif && \
     pecl install mongodb && docker-php-ext-enable mongodb && \
     pecl install apcu  && docker-php-ext-enable apcu  && \
-    apt-get remove -y libssl-dev libpng12-dev libjpeg62-turbo-dev&& \
+    apt-get remove -y libssl-dev libpng12-dev libjpeg62-turbo-dev libjpeg-dev libfreetype6-dev && \
     rm -rf /var/lib/apt/lists/*
 
 RUN ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts  && \
