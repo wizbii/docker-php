@@ -56,4 +56,4 @@ RUN ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts  && \
 
 RUN chown www-data /var/www
     
-RUN a2enmod rewrite
+RUN a2enmod rewrite headers
