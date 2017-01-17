@@ -1,4 +1,4 @@
-FROM php:7-apache
+FROM php:7.1-apache
 
 RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/testing.list && \
     { \
