@@ -43,12 +43,18 @@ RUN	   echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& locale-gen
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends libssl-dev libpng12-dev libjpeg-dev libfreetype6-dev  && \
-    docker-php-ext-configure gd --enable-gd-native-ttf --with-jpeg-dir=/usr/lib/x86_64-linux-gnu --with-png-dir=/usr/lib/x86_64-linux-gnu --with-freetype-dir=/usr/lib/x86_64-linux-gnu && \
+    apt-get install -y --no-install-recommends libssl-dev libpng12-dev libjpeg-dev libfreetype6-dev zlib1g-dev \
+        libcurl4-openssl-dev libevent-dev libicu-dev libidn11-dev libidn2-0-dev && \
+    docker-php-ext-configure gd --enable-gd-native-ttf --with-jpeg-dir=/usr/lib/x86_64-linux-gnu \
+        --with-png-dir=/usr/lib/x86_64-linux-gnu --with-freetype-dir=/usr/lib/x86_64-linux-gnu && \
     docker-php-ext-install bcmath opcache gd pdo_mysql exif && \
     pecl install mongodb && docker-php-ext-enable mongodb && \
     pecl install apcu  && docker-php-ext-enable apcu  && \
-    apt-get remove -y libssl-dev libpng12-dev libjpeg62-turbo-dev libjpeg-dev libfreetype6-dev && \
+    pecl install raphf && docker-php-ext-enable raphf && \
+    pecl install propro && docker-php-ext-enable propro && \
+    pecl install pecl_http && docker-php-ext-enable http && \
+    apt-get remove -y libssl-dev libpng12-dev libjpeg62-turbo-dev libjpeg-dev libfreetype6-dev \
+        zlib1g-dev libcurl4-openssl-dev libevent-dev libicu-dev libidn11-dev libidn2-0-dev && \
     rm -rf /var/lib/apt/lists/*
 
 RUN ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts  && \
