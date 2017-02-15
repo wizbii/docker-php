@@ -54,7 +54,7 @@ RUN apt-get update && \
     pecl install propro && docker-php-ext-enable propro && \
     pecl install pecl_http && docker-php-ext-enable http && \
     apt-get remove -y libssl-dev libpng12-dev libjpeg62-turbo-dev libjpeg-dev libfreetype6-dev \
-        zlib1g-dev libcurl4-openssl-dev libevent-dev libicu-dev libidn11-dev libidn2-0-dev && \
+        zlib1g-dev libcurl4-openssl-dev libevent-dev libicu-dev libidn11-dev libidn2-0-dev libicu-dev && \
     rm -rf /var/lib/apt/lists/*
 
 RUN ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts  && \
