@@ -27,6 +27,7 @@ RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/test
         sudo \
         less \
         locales \
+	zip \
 	nodejs && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* && \
