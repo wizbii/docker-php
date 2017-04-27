@@ -31,7 +31,8 @@ RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/test
 	nodejs && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* && \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    echo 'memory_limit = -1' > /usr/local/etc/php/php.ini
 
 RUN	   echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
