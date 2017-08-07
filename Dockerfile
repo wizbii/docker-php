@@ -32,8 +32,9 @@ RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/test
     rm -rf /var/lib/apt/lists/* && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     echo 'memory_limit = -1' > /usr/local/etc/php/php.ini && \
-    wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz && \
+    curl -O -L https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz && \
     tar xvf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz wkhtmltox/bin/wkhtmltopdf && \
+    rm -rf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz && \
     mv wkhtmltox/bin/wkhtmltopdf /usr/local/bin && rm -rf wkhtmltox
 
 
