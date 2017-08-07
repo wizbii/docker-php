@@ -20,7 +20,6 @@ RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/test
         git \
         unzip \
         libxml2-utils \
-        wkhtmltopdf \
         openjdk-7-jre \
         vim \
         openssh-client \
@@ -32,7 +31,11 @@ RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/test
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-    echo 'memory_limit = -1' > /usr/local/etc/php/php.ini
+    echo 'memory_limit = -1' > /usr/local/etc/php/php.ini && \
+    wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz && \
+    tar xvf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz wkhtmltox/bin/wkhtmltopdf && \
+    mv wkhtmltox/bin/wkhtmltopdf /usr/local/bin && rm -rf wkhtmltox
+
 
 RUN	   echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
