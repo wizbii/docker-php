@@ -1,16 +1,6 @@
 FROM php:7.1-apache
 
-RUN sed 's/jessie/testing/' /etc/apt/sources.list > /etc/apt/sources.list.d/testing.list && \
-    { \
-      echo 'Package: *'; \
-      echo 'Pin: release a=testing'; \
-      echo 'Pin-Priority: -10'; \
-      echo; \
-      echo 'Package: git*'; \
-      echo 'Pin: release a=testing'; \
-      echo 'Pin-Priority: 990'; \
-    }  > /etc/apt/preferences.d/git && \
-    echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \ 
+RUN echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \ 
     echo 'alias sudow="sudo -sHEu www-data"' >> /etc/profile.d/wizbii.sh && \
     # Install an acceptable nodejs version with npm
     curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
