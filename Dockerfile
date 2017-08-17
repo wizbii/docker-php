@@ -17,7 +17,7 @@ RUN echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \
         less \
         locales \
 	zip \
-	nodejs && \
+	nodejs \
 	pdftk && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* && \
