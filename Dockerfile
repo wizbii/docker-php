@@ -1,6 +1,6 @@
 FROM php:7.1-apache
 
-RUN echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \ 
+RUN echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \
     echo 'alias sudow="sudo -sHEu www-data"' >> /etc/profile.d/wizbii.sh && \
     # Install an acceptable nodejs version with npm
     curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
@@ -23,6 +23,7 @@ RUN echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \
     rm -rf /var/lib/apt/lists/* && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     echo 'memory_limit = -1' > /usr/local/etc/php/php.ini && \
+    echo 'display_errors = Off' > /usr/local/etc/php/php.ini && \
     curl -O -L https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz && \
     tar xvf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz wkhtmltox/bin/wkhtmltopdf && \
     rm -rf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz && \
@@ -63,5 +64,5 @@ RUN ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts  && \
     ssh-keyscan -t rsa bitbucket.org >> /etc/ssh/ssh_known_hosts
 
 RUN chown www-data /var/www
-    
+
 RUN a2enmod rewrite headers
