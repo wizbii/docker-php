@@ -45,7 +45,7 @@ RUN apt-get update && \
         libcurl4-openssl-dev libevent-dev libicu-dev libidn11-dev libidn2-0-dev libicu-dev && \
     docker-php-ext-configure gd --enable-gd-native-ttf --with-jpeg-dir=/usr/lib/x86_64-linux-gnu \
         --with-png-dir=/usr/lib/x86_64-linux-gnu --with-freetype-dir=/usr/lib/x86_64-linux-gnu && \
-    docker-php-ext-install bcmath opcache gd pdo_mysql exif intl && \
+    docker-php-ext-install bcmath opcache gd pdo_mysql exif intl zip && \
     pecl install mongodb && docker-php-ext-enable mongodb && \
     pecl install apcu  && docker-php-ext-enable apcu  && \
     pecl install raphf && docker-php-ext-enable raphf && \
