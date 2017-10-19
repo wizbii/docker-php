@@ -18,6 +18,7 @@ RUN echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \
         locales \
 	zip \
 	nodejs \
+	libmagickwand-dev \
 	pdftk && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* && \
@@ -51,6 +52,7 @@ RUN apt-get update && \
     pecl install raphf && docker-php-ext-enable raphf && \
     pecl install propro && docker-php-ext-enable propro && \
     pecl install pecl_http && docker-php-ext-enable http && \
+    pecl install imagick && docker-php-ext-enable imagick && \
     apt-get remove -y libssl-dev libpng12-dev libjpeg62-turbo-dev libjpeg-dev libfreetype6-dev \
         zlib1g-dev libcurl4-openssl-dev libevent-dev libicu-dev libidn11-dev libidn2-0-dev libicu-dev && \
     rm -rf /var/lib/apt/lists/* \
