@@ -28,7 +28,7 @@ RUN echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \
     curl -O -L https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz && \
     tar xvf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz wkhtmltox/bin/wkhtmltopdf && \
     rm -rf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz && \
-    mv wkhtmltox/bin/wkhtmltopdf /usr/local/bin && rm -rf wkhtmltox
+    mv wkhtmltox/bin/* /usr/local/bin && rm -rf wkhtmltox
 
 
 RUN	   echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
