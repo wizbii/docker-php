@@ -26,7 +26,7 @@ RUN echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \
     echo 'memory_limit = -1' > /usr/local/etc/php/php.ini && \
     echo 'display_errors = Off' >> /usr/local/etc/php/php.ini && \
     curl -O -L https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz && \
-    tar xvf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz wkhtmltox/bin/wkhtmltopdf && \
+    tar xvf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz wkhtmltox/bin/ && \
     rm -rf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz && \
     mv wkhtmltox/bin/* /usr/local/bin && rm -rf wkhtmltox
 
