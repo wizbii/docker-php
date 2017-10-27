@@ -16,6 +16,7 @@ RUN echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \
         sudo \
         less \
         locales \
+        imagemagick \
 	zip \
 	nodejs \
 	libmagickwand-dev \
