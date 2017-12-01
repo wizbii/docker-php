@@ -1,4 +1,4 @@
-FROM php:7.1-apache
+FROM php:7.2-apache
 
 RUN echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \
     echo 'alias sudow="sudo -sHEu www-data"' >> /etc/profile.d/wizbii.sh && \
