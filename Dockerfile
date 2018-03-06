@@ -13,8 +13,8 @@ WORKDIR ${BASE_PATH}
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-RUN \
-    # Install an acceptable nodejs version with npm
+# fix for https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199 \
+RUN mkdir -p /usr/share/man/man1 && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
         git \
@@ -53,7 +53,7 @@ RUN	   echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& locale-gen
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends libssl-dev libpng12-dev libjpeg-dev libfreetype6-dev zlib1g-dev \
+    apt-get install -y --no-install-recommends libssl-dev libpng-dev libjpeg-dev libfreetype6-dev zlib1g-dev \
         libcurl4-openssl-dev libevent-dev libicu-dev libidn11-dev libidn2-0-dev libicu-dev && \
     docker-php-ext-configure gd --enable-gd-native-ttf --with-jpeg-dir=/usr/lib/x86_64-linux-gnu \
         --with-png-dir=/usr/lib/x86_64-linux-gnu --with-freetype-dir=/usr/lib/x86_64-linux-gnu && \
@@ -64,7 +64,7 @@ RUN apt-get update && \
     pecl install propro && docker-php-ext-enable propro && \
     pecl install pecl_http && docker-php-ext-enable http && \
     pecl install imagick && docker-php-ext-enable imagick && \
-    apt-get remove -y libssl-dev libpng12-dev libjpeg62-turbo-dev libjpeg-dev libfreetype6-dev \
+    apt-get remove -y libssl-dev libpng-dev libjpeg62-turbo-dev libjpeg-dev libfreetype6-dev \
         zlib1g-dev libcurl4-openssl-dev libevent-dev libicu-dev libidn11-dev libidn2-0-dev libicu-dev && \
     rm -rf /var/lib/apt/lists/* \
     && version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
