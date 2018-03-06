@@ -1,16 +1,27 @@
 FROM php:7.2-apache
 
-RUN echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \
-    echo 'alias sudow="sudo -sHEu www-data"' >> /etc/profile.d/wizbii.sh && \
+ARG GIT_REFERENCE
+ENV GIT_REFERENCE ${GIT_REFERENCE:-HEAD}
+
+ARG BUILD_DATE
+ENV BUILD_DATE ${BUILD_DATE:-unknown}
+
+ARG BASE_PATH
+ENV BASE_PATH ${BASE_PATH:-/usr/src/app}
+
+WORKDIR ${BASE_PATH}
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+RUN \
     # Install an acceptable nodejs version with npm
-    curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
-    echo 'deb http://deb.nodesource.com/node_6.x jessie main' > /etc/apt/sources.list.d/nodesource.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
         git \
         unzip \
         libxml2-utils \
-        openjdk-7-jre \
+        openjdk-8-jre-headless \
+        openjdk-8-jre \
         vim \
         openssh-client \
         sudo \
@@ -19,12 +30,10 @@ RUN echo 'alias ll="ls -l"' > /etc/profile.d/wizbii.sh && \
         imagemagick \
 	ghostscript \
 	zip \
-	nodejs \
 	libmagickwand-dev \
 	pdftk && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* && \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     echo 'memory_limit = -1' > /usr/local/etc/php/php.ini && \
     echo 'display_errors = Off' >> /usr/local/etc/php/php.ini && \
     curl -O -L https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz && \
@@ -70,3 +79,8 @@ RUN ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts  && \
 RUN chown www-data /var/www
 
 RUN a2enmod rewrite headers
+
+LABEL org.label-schema.vcs-url="https://github.com/wizbii/docker-php" \
+      org.label-schema.vendor="Wizbii" \
+      org.label-schema.schema-version="1.0" \
+      org.label-schema.build-date="${BUILD_DATE}"
