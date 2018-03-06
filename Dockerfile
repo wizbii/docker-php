@@ -21,7 +21,6 @@ RUN mkdir -p /usr/share/man/man1 && \
         unzip \
         libxml2-utils \
         openjdk-8-jre-headless \
-        openjdk-8-jre \
         vim \
         openssh-client \
         sudo \
