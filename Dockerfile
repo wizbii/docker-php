@@ -20,7 +20,6 @@ RUN mkdir -p /usr/share/man/man1 && \
         git \
         unzip \
         libxml2-utils \
-        openjdk-8-jre-headless \
         vim \
         openssh-client \
         sudo \
