@@ -2,7 +2,8 @@ FROM wizbii/php:7.1-apache
 
 ENV container docker
 
-RUN find /etc/systemd/system \
+RUN apt-get update && apt-get install -y systemd  && rm -rf /var/lib/apt/lists/*  && \
+    find /etc/systemd/system \
     /lib/systemd/system \
     -path '*.wants/*' \
     -not -name '*journald*' \
