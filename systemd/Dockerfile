@@ -1,4 +1,4 @@
-FROM wizbii/php:7.2-apache
+FROM wizbii/php:apache
 
 ENV container docker
 
