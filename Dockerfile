@@ -29,6 +29,7 @@ RUN mkdir -p /usr/share/man/man1 && \
 	ghostscript \
 	zip \
 	libmagickwand-dev \
+	acl \
 	pdftk && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* && \
