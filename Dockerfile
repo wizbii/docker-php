@@ -1,15 +1,19 @@
 FROM php:7.2-apache
 
-ARG GIT_REFERENCE
-ENV GIT_REFERENCE ${GIT_REFERENCE:-HEAD}
+ONBUILD ARG GIT_REFERENCE
+ONBUILD ENV GIT_REFERENCE ${GIT_REFERENCE:-HEAD}
 
-ARG BUILD_DATE
-ENV BUILD_DATE ${BUILD_DATE:-unknown}
+ONBUILD ARG BUILD_DATE
+ONBUILD ENV BUILD_DATE ${BUILD_DATE:-unknown}
 
-ARG BASE_PATH
-ENV BASE_PATH ${BASE_PATH:-/usr/src/app}
+ONBUILD ARG BASE_PATH
+ONBUILD ENV BASE_PATH ${BASE_PATH:-/usr/src/app}
 
-WORKDIR ${BASE_PATH}
+ONBUILD WORKDIR ${BASE_PATH}
+
+ONBUILD LABEL org.label-schema.vendor="Wizbii" \
+      org.label-schema.schema-version="1.0" \
+      org.label-schema.build-date="${BUILD_DATE}"
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
@@ -78,8 +82,3 @@ RUN ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts  && \
 RUN chown www-data /var/www
 
 RUN a2enmod rewrite headers
-
-LABEL org.label-schema.vcs-url="https://github.com/wizbii/docker-php" \
-      org.label-schema.vendor="Wizbii" \
-      org.label-schema.schema-version="1.0" \
-      org.label-schema.build-date="${BUILD_DATE}"
