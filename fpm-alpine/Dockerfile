@@ -4,7 +4,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN apk add --no-cache autoconf openssl-dev g++ make pcre-dev && \
     pecl install mongodb && \
-    docker-php-ext-install zip && \
+    docker-php-ext-install bcmath opcache zip && \
     docker-php-ext-enable mongodb && \
     apk add gnu-libiconv --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted && \
     apk del --purge autoconf g++ make
