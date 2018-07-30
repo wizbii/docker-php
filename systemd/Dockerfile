@@ -15,4 +15,4 @@ RUN systemctl set-default multi-user.target
 
 STOPSIGNAL SIGRTMIN+3
 
-ENTRYPOINT ["bash", "-c" , "exec /bin/systemd $(env | grep -v \" \" |while read env ; do echo -n \"systemd.setenv=${env} \"; done)"]
+ENTRYPOINT ["bash", "-c" , "exec /bin/systemd $(env | grep -v \" \" |while read env ; do printf %q \"systemd.setenv=${env}\"; printf \" \"; done)"]
