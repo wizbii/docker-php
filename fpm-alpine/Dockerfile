@@ -20,7 +20,7 @@ ONBUILD LABEL org.label-schema.vendor="Wizbii" \
 RUN apk add --no-cache autoconf openssl-dev g++ make pcre-dev icu-dev && \
     pecl install mongodb && \
     docker-php-ext-enable mongodb && \
-    docker-php-ext-install bcmath intl opcache zip && \
+    docker-php-ext-install bcmath intl opcache zip sockets && \
     apk add gnu-libiconv --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted && \
     apk del --purge autoconf g++ make
 
