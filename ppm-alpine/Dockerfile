@@ -21,6 +21,13 @@ RUN apk add --no-cache autoconf openssl-dev g++ make pcre-dev icu-dev && \
     pecl install mongodb && \
     docker-php-ext-enable mongodb && \
     docker-php-ext-install pcntl bcmath intl opcache zip && \
+    version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
+    curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version && \
+    tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp && \
+    rm -rf /tmp/blackfire-probe.tar.gz && \
+    mv /tmp/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
+    printf "extension=blackfire.so\nblackfire.agent_socket=tcp://10.1.1.1:8707\n" > $PHP_INI_DIR/conf.d/blackfire.ini && \
+
     apk add gnu-libiconv --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted && \
     apk del --purge autoconf g++ make
 
