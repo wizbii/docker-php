@@ -1,4 +1,4 @@
-FROM php:7.2-apache
+FROM php:7.3-apache
 
 ONBUILD ARG GIT_REFERENCE
 ONBUILD ENV GIT_REFERENCE ${GIT_REFERENCE:-HEAD}
@@ -32,6 +32,7 @@ RUN mkdir -p /usr/share/man/man1 && \
         imagemagick \
 	ghostscript \
 	zip \
+	libzip-dev \
 	libmagickwand-dev \
 	acl \
 	pdftk && \
