@@ -1,4 +1,4 @@
-FROM php:7.3-apache
+FROM php:7.4-apache
 
 ONBUILD ARG GIT_REFERENCE
 ONBUILD ENV GIT_REFERENCE ${GIT_REFERENCE:-HEAD}
@@ -57,10 +57,9 @@ RUN	   echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& locale-gen
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends libssl1.0-dev libpng-dev libjpeg-dev libfreetype6-dev zlib1g-dev \
+    apt-get install -y --no-install-recommends libssl-dev libpng-dev libjpeg-dev libfreetype6-dev zlib1g-dev \
         libcurl4-openssl-dev libevent-dev libicu-dev libidn11-dev libidn2-0-dev && \
-    docker-php-ext-configure gd --enable-gd-native-ttf --with-jpeg-dir=/usr/lib/x86_64-linux-gnu \
-        --with-png-dir=/usr/lib/x86_64-linux-gnu --with-freetype-dir=/usr/lib/x86_64-linux-gnu && \
+    docker-php-ext-configure gd --with-jpeg --with-freetype && \
     docker-php-ext-install bcmath opcache gd pdo_mysql exif intl zip sockets && \
     pecl install mongodb && docker-php-ext-enable mongodb && \
     pecl install apcu  && docker-php-ext-enable apcu  && \
