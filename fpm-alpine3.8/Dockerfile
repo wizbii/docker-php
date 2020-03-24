@@ -19,7 +19,7 @@ ONBUILD LABEL org.label-schema.vendor="Wizbii" \
       org.label-schema.schema-version="1.0" \
       org.label-schema.build-date="${BUILD_DATE}"
 
-RUN apk add --no-cache autoconf openssl-dev g++ make pcre-dev icu-dev zlib-dev libzip-dev && \
+RUN apk add --no-cache autoconf openssl-dev g++ make pcre-dev icu-dev zlib-dev libzip-dev git && \
     pecl install mongodb && \
     docker-php-ext-enable mongodb && \
     docker-php-ext-install bcmath intl opcache zip sockets && \

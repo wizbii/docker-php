@@ -17,7 +17,7 @@ ONBUILD LABEL org.label-schema.vendor="Wizbii" \
       org.label-schema.schema-version="1.0" \
       org.label-schema.build-date="${BUILD_DATE}"
 
-RUN apk add --no-cache autoconf gnu-libiconv openssl-dev g++ make pcre-dev icu-dev zlib-dev libzip-dev && \
+RUN apk add --no-cache autoconf gnu-libiconv openssl-dev g++ make pcre-dev icu-dev zlib-dev libzip-dev git && \
     mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" && \
     pecl install mongodb && \
     docker-php-ext-enable mongodb && \
