@@ -19,8 +19,8 @@ ONBUILD LABEL org.label-schema.vendor="Wizbii" \
 
 RUN apk add --no-cache gnu-libiconv autoconf openssl-dev g++ make pcre-dev icu-dev zlib-dev libzip-dev git && \
     mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" && \
-    pecl install mongodb redis && \
-    docker-php-ext-enable mongodb redis && \
+    pecl install mongodb redis apcu && \
+    docker-php-ext-enable mongodb redis apcu && \
     docker-php-ext-install bcmath intl opcache zip sockets && \
     version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
     curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/$version && \
