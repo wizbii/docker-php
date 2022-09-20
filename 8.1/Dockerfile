@@ -19,6 +19,7 @@ RUN echo "## Installing dependencies" && \
     echo '## Installing PHP extensions' && \
     install-php-extensions bcmath \
         intl \
+        calendar \
         opcache \
         zip \
         sockets \
